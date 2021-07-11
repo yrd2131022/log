@@ -1,0 +1,221 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yrd</groupId>
+	<artifactId>log</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>log Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.49</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!-- ==================================jul============================================= -->
+
+		<!--不需要，添加jar自带的 -->
+
+		<!-- ================================================================================= -->
+		<!-- ==================================log4j============================================= -->
+
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<!-- <dependency> -->
+		<!-- <groupId>log4j</groupId> -->
+		<!-- <artifactId>log4j</artifactId> -->
+		<!-- <version>1.2.17</version> -->
+		<!-- </dependency> -->
+
+		<!-- =============================================================================== -->
+
+
+		<!-- ===============================jcl================================================ -->
+
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<!-- <dependency> -->
+		<!-- <groupId>commons-logging</groupId> -->
+		<!-- <artifactId>commons-logging</artifactId> -->
+		<!-- <version>1.2</version> -->
+		<!-- </dependency> -->
+
+		<!-- =============================================================================== -->
+
+
+
+		<!-- =================================slf4j============================================== -->
+
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.31</version>
+		</dependency>
+
+		<!-- slf4j有且仅有一个日志实现框架的绑定（如果出现多个默认使用第一个依赖日志实现） -->
+
+
+		<!-- 绑定：log4j2 日志实现 -->
+		<!--为slf4j绑定日志实现 log4j2的适配器 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+
+
+		<!-- log4j2 日志门面 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+
+		<!-- log4j2 日志实现 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+
+		<!--异步日志依赖 -->
+		<!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+
+
+
+
+
+		<!-- 绑定：jul 日志实现，需要导入适配器 -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14 -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-jdk14</artifactId> -->
+		<!-- <version>1.7.31</version> -->
+		<!-- </dependency> -->
+
+		<!-- 绑定：log4j 日志实现，需要导入适配器（适配器+实现,两个jar包，log4j.properties） -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-log4j12</artifactId> -->
+		<!-- <version>1.7.31</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>log4j</groupId> -->
+		<!-- <artifactId>log4j</artifactId> -->
+		<!-- <version>1.2.17</version> -->
+		<!-- </dependency> -->
+
+
+		<!-- 绑定：nop 日志开关，（不使用日志了） -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-nop</artifactId> -->
+		<!-- <version>1.7.31</version> -->
+		<!-- </dependency> -->
+
+
+		<!-- 绑定：logback 日志实现 -->
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<!-- <dependency> -->
+		<!-- <groupId>ch.qos.logback</groupId> -->
+		<!-- <artifactId>logback-classic</artifactId> -->
+		<!-- <version>1.2.3</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>ch.qos.logback</groupId> -->
+		<!-- <artifactId>logback-core</artifactId> -->
+		<!-- <version>1.2.3</version> -->
+		<!-- </dependency> -->
+
+		<!-- 绑定：slf4j 内置的简单实现 -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-simple</artifactId> -->
+		<!-- <version>1.7.31</version> -->
+		<!-- </dependency> -->
+
+
+		<!-- =============================================================================== -->
+
+
+		<!-- ==============================桥接器================================================= -->
+		<!-- ===如果程序中使用了log4j进行日志开发，现在换成了slf4j开发==== -->
+		<!-- ===删除了log4j.jar,后，导致java函数找不到包(import org.apache.log4j.Logger;)==== -->
+		<!-- ===如果想，原先的 log4j开发的日志代码也能使用，就需要进行桥接==== -->
+		<!-- 注意：桥接器和适配器不能同时出现 -->
+		<!-- 1. jcl-over-slf4j.jar和 slf4j-jcl.jar不能同时部署。前一个jar文件将导致JCL将日志系统的选择委托给 
+			SLF4J，后一个jar文件将导致SLF4J将日志系统的选择委托给JCL，从而导致无限循环。 2. log4j-over-slf4j.jar和slf4j-log4j12.jar不能同时出现3. 
+			jul-to-slf4j.jar和slf4j-jdk14.jar不能同时出现 4. 所有的桥接都只对Logger日志记录器对象有效，如果程序中调用了内部的配置类或者是 
+			Appender,Filter等对象，将无法产生效果。 -->
+
+		<!-- 配置log4j 的桥接器，以前用log4j开发的代码，可以正常使用 -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>1.7.31</version>
+		</dependency>
+
+		<!-- 配置jcl 的桥接器，以前用jcl开发的代码，可以正常使用 -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.31</version>
+		</dependency>
+
+
+
+
+
+		<!-- =============================================================================== -->
+
+
+	</dependencies>
+	<build>
+		<finalName>log</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- <version>3.6.0</version> -->
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

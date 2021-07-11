@@ -1,0 +1,10 @@
+常见的日志门面 ：
+JCL(被淘汰)、slf4j
+常见的日志实现：
+JUL、log4j、logback、log4j2
+
+对于一般的Java项目而言，日志框架会选择slf4j-api作为门面，配上具体的实现框架（log4j、logback等），中间使用桥接器完成桥接。
+
+log4j2,是门面技术，也是实现框架。
+
+一般使用：slf4j+logback。或slf4j+log4j2

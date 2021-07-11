@@ -1,0 +1,96 @@
+1.  log4j2.xml  名字必须命名成log4j2.xml
+2.  log4j2.component.properties 名字必须命名长log4j2.component.properties
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.31</version>
+		</dependency>
+
+		<!-- slf4j有且仅有一个日志实现框架的绑定（如果出现多个默认使用第一个依赖日志实现） -->
+
+
+		<!-- 绑定：log4j2 日志实现 -->
+		<!--为slf4j绑定日志实现 log4j2的适配器 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+
+
+		<!-- log4j2 日志门面 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+
+		<!-- log4j2 日志实现 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+
+		<!--异步日志依赖 -->
+		<!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+		
+		
+=======================================================================================================
+2. AsyncLogger方式
+AsyncLogger才是log4j2 的重头戏，也是官方推荐的异步方式。它可以使得调用Logger.log返回的更快。
+你可以有两种选择：全局异步和混合异步。
+
+全局异步就是，所有的日志都异步的记录，在配置文件上不用做任何改动，只需要添加一个
+log4j2.component.properties 配置；
+Log4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+
+混合异步就是，你可以在应用中同时使用同步日志和异步日志，这使得日志的配置方式更加灵活。
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<properties>
+		<property name="LOG_HOME">D:/logs</property>
+	</properties>
+	<Appenders>
+		<File name="file" fileName="${LOG_HOME}/myfile.log">
+		
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+		</File>
+		
+		<Async name="Async">
+			<AppenderRef ref="file"/>
+		</Async>
+	</Appenders>
+	
+	<Loggers>
+		<AsyncLogger name="com.itheima" level="trace"
+				includeLocation="false" additivity="false">
+			<AppenderRef ref="file"/>
+		</AsyncLogger>
+		
+		<Root level="info" includeLocation="true">
+			<AppenderRef ref="file"/>
+		</Root>
+	</Loggers>
+	
+</Configuration>
+如上配置： com.itheima 日志是异步的，root日志是同步的。
+
+使用异步日志需要注意的问题：
+1. 如果使用异步日志，AsyncAppender、AsyncLogger和全局日志，不要同时出现。性能会和
+AsyncAppender一致，降至最低。
+2. 设置includeLocation=false ，打印位置信息会急剧降低异步日志的性能，比同步日志还要
+慢		
